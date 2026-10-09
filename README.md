@@ -11,7 +11,7 @@ Live: https://abdellrahmanahmed.github.io/
 | v2.0.0 (current) | `/` | Single-file bilingual (English / Arabic) page focused on wireless smart home field work |
 | v1.0.0 (archived) | [`/v1/`](https://abdellrahmanahmed.github.io/v1/) | Original Flutter web portfolio, kept as built in March 2025 |
 
-The v1 source is also preserved under the git tag `v1.0.0`.
+The original v1 files are also preserved unchanged on the branch [`v1-flutter`](https://github.com/AbdellrahmanAhmed/abdellrahmanahmed.github.io/tree/v1-flutter).
 
 ## Contact
 
