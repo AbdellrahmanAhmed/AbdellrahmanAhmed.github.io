@@ -1,6 +1,7 @@
 # Changelog
 
 ## v2.0.0 — 2026-10-09
+- Link preview image (og-image.jpg) for WhatsApp, LinkedIn and Facebook.
 - KNX Advanced certification added (KNX Association, Sep 2026).
 - New single-file portfolio page, English and Arabic with a language switch, light and dark themes.
 - Sections: field systems, field work (latest sites, project register, problems solved), a tool for every stage, software, learning, technical writing, skills, contact.
