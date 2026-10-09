@@ -1,6 +1,7 @@
 # Changelog
 
 ## v2.0.0 — 2026-10-09
+- KNX Advanced certification added (KNX Association, Sep 2026).
 - New single-file portfolio page, English and Arabic with a language switch, light and dark themes.
 - Sections: field systems, field work (latest sites, project register, problems solved), a tool for every stage, software, learning, technical writing, skills, contact.
 - Old Flutter site moved to `/v1/`, and kept unchanged on the `v1-flutter` branch.
