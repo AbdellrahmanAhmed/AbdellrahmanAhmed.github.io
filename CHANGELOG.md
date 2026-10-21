@@ -1,5 +1,9 @@
 # Changelog
 
+## Maintenance page — 2026-10-21
+- The site root now shows a temporary "programming mode" page until the final v3 launch at the end of October 2026: totals, training and probation summary, systems, areas, credentials and full contact details, with a countdown and a link to v2.
+- The full v3 page is kept as the Project's `index.html` (source of truth) and in git history (commit 7604680); it is not published on a side path while it is being finished. At launch it replaces this page at the root.
+
 ## v3.0.1 — 2026-10-21
 - Training period start corrected to 6 April 2026 (field projects P-01 to P-17 start in May).
 
