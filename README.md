@@ -8,10 +8,11 @@ Live: https://abdellrahmanahmed.github.io/
 
 | Version | Path | Description |
 |---|---|---|
-| v2.0.0 (current) | `/` | Single-file bilingual (English / Arabic) page focused on wireless smart home field work |
+| v3.0.0 (current) | `/` | Adds the probation period (P-18 to P-28), a KNX on ETS6 section and new tools |
+| v2.0.0 (archived) | [`/v2/`](https://abdellrahmanahmed.github.io/v2/) | Single-file bilingual (English / Arabic) page focused on wireless smart home field work |
 | v1.0.0 (archived) | [`/v1/`](https://abdellrahmanahmed.github.io/v1/) | Original Flutter web portfolio, kept as built in March 2025 |
 
-The original v1 files are also preserved unchanged on the branch [`v1-flutter`](https://github.com/AbdellrahmanAhmed/abdellrahmanahmed.github.io/tree/v1-flutter).
+The original v1 files are also preserved unchanged on the branch [`v1-flutter`](https://github.com/AbdellrahmanAhmed/abdellrahmanahmed.github.io/tree/v1-flutter), and v2 on the branch [`v2-single-file`](https://github.com/AbdellrahmanAhmed/abdellrahmanahmed.github.io/tree/v2-single-file).
 
 ## Contact
 
