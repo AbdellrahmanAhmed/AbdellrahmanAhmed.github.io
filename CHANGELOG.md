@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0.1 — 2026-10-21
+- Training period start corrected to 6 April 2026 (field projects P-01 to P-17 start in May).
+
 ## v3.0.0 — 2026-10-21
 - Projects P-18 to P-28 from the probation dossier (28 Jul – 21 Oct 2026) added to the register, grouped as training and probation periods.
 - New "Latest sites": Laian Compound villa (P-18), first KNX programming on site (P-24), Madinaty villa handover (P-19), Luxor smart hotel rooms (P-20).
