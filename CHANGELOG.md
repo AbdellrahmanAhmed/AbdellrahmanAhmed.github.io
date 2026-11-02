@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.1.0 — 2026-11-02 · launch
+- Full v3 back at the site root; the temporary maintenance page is retired.
+- New job title from 1 November 2026: Technical Site Engineer (was Technical Office). Updated in the hero, meta and link preview text.
+- Training and probation marked as completed; a third "Now · Technical Site Engineer" card added beside the two period cards.
+- Link preview title line changed to "TECHNICAL SITE ENGINEER" (og:image ?v=4); the LinkedIn banner and WhatsApp cover were updated to match.
+
 ## Maintenance page — 2026-10-21
 - The site root now shows a temporary "programming mode" page until the final v3 launch at the end of October 2026: totals, training and probation summary, systems, areas, credentials and full contact details, with a countdown and a link to v2.
 - The full v3 page is kept as the Project's `index.html` (source of truth) and in git history (commit 7604680); it is not published on a side path while it is being finished. At launch it replaces this page at the root.
