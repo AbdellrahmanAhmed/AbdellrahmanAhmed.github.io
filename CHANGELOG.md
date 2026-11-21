@@ -2,7 +2,7 @@
 
 ## v3.11 — 2026-11-21
 - Version named for November 2026.
-- Each period card now shows the position held in small type under its title: Smart Home & Automation Engineer · Internship (training), Technical Office Engineer (probation), Technical Site Engineer (current role). The "Now" card became "Current role" with its own figures: 6 projects, 2 finished, 4 in progress.
+- Each period card now shows the position held in small type under its title: Smart Home & Automation Engineer · Internship (training), Technical Office Engineer (probation), Technical Site Engineer (current role). The "Now" card keeps its title, with the position under it and its own figures: 6 projects, 2 finished, 4 in progress.
 - New projects from the ERA Suite work log, in a new register group (last week of October and November 2026): P-29 villa KNX system in Sodic East Town, P-30 Palm Hills villa installed and handed over, P-31 Royal Lagoons, P-32 Bel Air, P-33 Swan Lake, P-34 Valori, Smouha (Alexandria).
 - Latest sites: Palm Hills (P-30) and Sodic East Town (P-29) added at the top; P-19 and P-24 stay in the register and the KNX section.
 - KNX section: Sodic East Town villa system added (155 group addresses, 72 actuator channels, ALLinBOX as IP interface).
