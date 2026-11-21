@@ -575,18 +575,19 @@ body.zen #botmask{display:none}
 .ib:active,.rb:active{transform:scale(.88)}
 .bar i{transition:width .5s cubic-bezier(.2,.8,.3,1)}
 html[data-anim="off"] *,html[data-anim="off"] *::before,html[data-anim="off"] *::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-/* 4.2: the day view shows what really happened, the plan sits behind it in a darker shade */
-.tl-pl{position:absolute;border-radius:10px;background:color-mix(in srgb,var(--tc) 38%,#000 22%);opacity:.5;border:1.5px dashed color-mix(in srgb,var(--tc) 70%,#000);padding:2px 6px;overflow:hidden;z-index:1;cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-start}
-.tl-pl small{font-size:10.5px;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+/* 4.3: one block per task. Its real time in the task's colour, the planned time it did not use darker, both inside the same block */
+.tl-b.is-act{background:color-mix(in srgb,var(--tc) 30%,var(--card));cursor:pointer}
 .tl-b{z-index:2}
-.tl-b.is-act{cursor:pointer;padding-right:8px}
-.tl-b.is-act.is-done{opacity:.85}
+.tl-b small{direction:rtl;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-b small .pl-t{color:var(--ink3)}
+.tl-b.is-act.is-done{opacity:1}
 .tl-b.is-act.is-done b{text-decoration:none}
 .tl-b.is-live{border-bottom:2px dashed var(--tc);border-end-start-radius:0;border-end-end-radius:0}
 .tl-key{display:flex;gap:14px;font-size:12px;color:var(--ink2);margin:0 0 8px}
 .tl-key span{display:flex;align-items:center;gap:6px}.tl-key i{width:18px;height:10px;border-radius:3px;display:inline-block}
 .tl-key .k-act{background:color-mix(in srgb,var(--accent) 30%,var(--card));border-inline-start:3px solid var(--accent)}
-.tl-key .k-pl{background:color-mix(in srgb,var(--accent) 38%,#000 22%);opacity:.5;border:1.5px dashed color-mix(in srgb,var(--accent) 70%,#000)}
+.tl-key .k-pl{background:color-mix(in srgb,color-mix(in srgb,var(--accent) 40%,var(--card)) 55%,#000)!important;border-inline-start:3px solid var(--accent)}
+
 /* templates */
 .add-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .tile.big{display:grid;justify-items:center;gap:4px;padding:16px 8px}.tile.big .i{width:28px;height:28px;color:var(--accent-ink)}.tile.big b{font-size:15px}.tile.big small{font-size:12px;color:var(--ink2)}
@@ -626,6 +627,14 @@ html[data-anim="off"] *,html[data-anim="off"] *::before,html[data-anim="off"] *:
 .qb-arrow .i{position:absolute;top:12px;width:26px;height:26px;color:var(--accent-ink);background:var(--card);border-radius:50%;padding:3px}
 .qb-t{font-size:14px}
 .pr-r .pb-add.on{background:var(--ok);color:#fff}
+/* 4.3: narrow blocks wrap instead of cutting the words off */
+.tl-b b{white-space:normal;display:block;line-height:1.25;max-height:2.5em;overflow:hidden;flex:none;align-self:stretch;text-align:start}
+.tl-b small{align-self:stretch}
+.tl-b b .i{display:inline-block;vertical-align:-2px;margin-inline-end:4px}
+.tl-b small{white-space:normal;text-overflow:clip;line-height:1.3}
+.tl-b small span[dir]{white-space:nowrap;unicode-bidi:isolate}
+.tl-b.is-act,.tl-b.is-done{padding-right:8px}
+.tl-b.is-short b{white-space:nowrap;text-overflow:ellipsis;max-height:none}
 
 </style>
 </head>
@@ -878,7 +887,7 @@ function quickPreset(line,base){const q=parseQuick(String(line).slice(0,160)),p=
 const quickSay=p=>relDay(p.date)+(p.start!=null?' · '+fmtT(p.start)+' – '+fmtT(p.end):p.mode==='dur'?' · '+fmtDur(p.dur):' · من غير وقت');
 
 /* ================= split: the part that is done stays done, the rest continues later ================= */
-const APP_VER='4.2',SPLIT_MAX=24*60;
+const APP_VER='4.3',SPLIT_MAX=24*60;
 const partsOf=t=>t.sp?S.tasks.filter(x=>x.sp===t.sp).sort((a,b)=>(a.spn||0)-(b.spn||0)):[];
 const partLabel=t=>{if(!t.sp)return '';const n=partsOf(t).length;return 'جزء '+N(t.spn||1)+(n>1?' من '+N(n):'')};
 /* how much of the plan is still left, in minutes (rounded to 5) */
@@ -1098,7 +1107,6 @@ function tasksHTML(){const d=UI.date,td=today(),ds=dayStats(d),[hh,mm]=hm(nowMin
   if(UI.view!=='month')h+=weekStrip();
   if(hasDemo())h+=`<div class="banner"><span class="grow">دي مهام أمثلة علشان تشوف الشكل. عدّل عليها أو امسحها.</span><button class="btn sm" data-a="clearDemo">امسح الأمثلة</button></div>`;
   h+=prayBarHTML();
-  if(S.set.qbar!==false&&UI.view!=='month')h+=`<div class="qa"><span class="qa-i">${ic('bolt')}</span><input class="inp" id="qa-in" placeholder="إضافة سريعة: اجتماع بكرة 5م ساعة" data-k="qaAdd" data-i="qaIn" autocomplete="off" enterkeyhint="done" maxlength="160" value="${esc(UI.qa||'')}" aria-label="إضافة سريعة"><button class="btn sm pri" data-a="qaAdd" aria-label="أضف المهمة">${ic('add')}</button></div><div class="qa-hint" id="qa-hint">${UI.qa?esc(qaHint(UI.qa)):''}</div>${(S.tpls||[]).length?`<div class="qa-tp">${topTpls(3).map(tp=>`<button class="chip tc" style="--tc:var(--c${tp.color||1})" data-a="useTpl" data-v="${tp.id}">${ic(tp.icon||'task_alt')}${esc(tp.title)}</button>`).join('')}</div>`:''}`;
   const old=oldUndone();
   if(old.length&&d===td)h+=`<div class="banner"><span class="grow">${N(old.length)} مهام من أيام فاتت لسه ما خلصتش.</span><button class="btn sm" data-a="carry">رحّلها لليوم</button></div>`;
   if(!lsOk&&!Cloud.ok)h+=`<div class="banner crit"><span class="grow">الحفظ على الجهاز مش متاح في المتصفح ده، والبيانات ممكن تضيع لما تقفل الصفحة. خد نسخة احتياطية من الإعدادات.</span></div>`;
@@ -1166,27 +1174,30 @@ function circlesView(){const d=UI.date,a=filtered(d);if(!dayTasks(d).length)retu
     return `<button class="circ is-${st}" style="--tc:var(--c${t.color})" data-a="open" data-id="${t.id}"><span class="circ-r">${ring(p,86,7,t.id)}${ic(t.done?'check':t.icon)}<em data-live="pc:${t.id}">${N(p)}</em></span><b>${esc(t.title)}</b><small>${sp?fmtT(sp.s):t.mode==='dur'?N(t.dur)+'′':'—'} · ${stLabel(t,st)}</small></button>`}).join('')}</div>`}
 
 /* ---------- day timeline (drag to move, pull the bottom edge to resize) ---------- */
-function layoutCols(items){let cols=[],group=[],gEnd=-1;const flush=()=>{group.forEach(g=>g.n=cols.length);group=[];cols=[];gEnd=-1};
+/* side-by-side columns for tasks that overlap; a task then widens into the columns next to it that are free for its whole time */
+function layoutCols(items){let cols=[],group=[],gEnd=-1;const flush=()=>{const n=cols.length;group.forEach(g=>{g.n=n;g.w=1;for(let k=g.c+1;k<n;k++){if(group.some(o=>o!==g&&o.c===k&&o.s<g.ve&&g.s<o.ve))break;g.w++}});group=[];cols=[];gEnd=-1};
   for(const it of items){if(group.length&&it.s>=gEnd)flush();let c=cols.findIndex(e=>e<=it.s);if(c<0){c=cols.length;cols.push(it.ve)}else cols[c]=it.ve;it.c=c;group.push(it);gEnd=Math.max(gEnd,it.ve)}flush()}
-function dayView(){const d=UI.date,hh=S.set.hh,a=filtered(d);
+/* "4:30" without ص/م, kept left-to-right so a range reads 4:30–5:00 */
+const tShort=m=>fmtT(m).replace(/\s*[صم]$/,'');
+const tRange=(a,b)=>`<span dir="ltr">${tShort(a)}–${b==null?'…':tShort(b)}</span>`;
+function dayView(){const d=UI.date,hh=S.set.hh,a=filtered(d),minH=22/hh*60;
   const items=[];
   for(const t of a){const act=actualOn(t,d),sp=span(t);
-    if(act){const pl=planOn(t,d),ghost=pl&&(Math.abs(pl.s-act.s)>=3||Math.abs(pl.e-act.e)>=3)?pl:null;
-      const s0=Math.min(act.s,ghost?ghost.s:1440),e0=Math.max(act.e,ghost?ghost.e:0);items.push({t,act,ghost,s:s0,e:Math.min(e0,1440),ve:Math.max(Math.min(e0,1440),s0+22/hh*60)})}
-    else if(sp)items.push({t,s:sp.s,e:Math.min(sp.e,1440),ve:Math.max(Math.min(sp.e,1440),sp.s+22/hh*60),open:sp.open})}
-  items.sort((x,y)=>x.s-y.s);layoutCols(items);const free=a.filter(t=>t.start==null&&!actualOn(t,d));
+    /* a started task is drawn only where it really happened; the plan stays in the task and in the stats */
+    if(act){const e0=Math.min(1440,Math.max(act.e,act.s+1));items.push({t,act,s:act.s,e:e0,ve:Math.max(e0,act.s+minH)})}
+    else if(sp)items.push({t,s:sp.s,e:Math.min(sp.e,1440),ve:Math.max(Math.min(sp.e,1440),sp.s+minH),open:sp.open})}
+  items.sort((x,y)=>x.s-y.s||y.e-x.e);layoutCols(items);const free=a.filter(t=>t.start==null&&!actualOn(t,d));
   let h=`<div class="tl-tools"><button class="chip ${S.set.ripple?'on':''}" data-a="ripple">${ic('fast_forward')}إزاحة تلقائية</button><button class="chip" data-a="shiftDay">${ic('swap_vert')}إزاحة الباقي</button>
     <span style="flex:1"></span><button class="ib" data-a="zoom" data-v="-1" aria-label="تصغير">${ic('zoom_out')}</button><button class="ib" data-a="zoom" data-v="1" aria-label="تكبير">${ic('zoom_in')}</button></div>`;
-  if(items.some(it=>it.ghost))h+=`<div class="tl-key"><span><i class="k-act"></i>اللي حصل فعلًا</span><span><i class="k-pl"></i>المخطط</span></div>`;
   if(free.length)h+=`<div class="tl-tray">${free.map(t=>`<button class="chip tc ${t.done?'':'on'}" style="--tc:var(--c${t.color})" data-a="open" data-id="${t.id}">${ic(t.done?'check':t.icon)}${esc(t.title)}${t.mode==='dur'?' · '+fmtDur(t.dur):''}</button>`).join('')}</div>`;
-  h+=`<div class="tl" style="--hh:${hh}px"><div class="tl-hours">${Array.from({length:25},(_,i)=>`<span style="top:${i*hh}px">${i<24?fmtT(i*60).replace(/ [صم]$/,''):''}</span>`).join('')}</div><div class="tl-grid" data-a="tlTap">`;
-  const pos=(it,s,e)=>`top:${(s/60*hh).toFixed(1)}px;height:${Math.max(20,(e-s)/60*hh).toFixed(1)}px;inset-inline-start:calc(${(it.c*100/it.n).toFixed(2)}% + 1px);width:calc(${(100/it.n).toFixed(2)}% - 3px)`;
+  h+=`<div class="tl" style="--hh:${hh}px"><div class="tl-hours">${Array.from({length:25},(_,i)=>`<span style="top:${i*hh}px">${i<24?tShort(i*60):''}</span>`).join('')}</div><div class="tl-grid" data-a="tlTap">`;
+  const col=it=>`inset-inline-start:calc(${(it.c*100/it.n).toFixed(2)}% + 1px);width:calc(${((it.w||1)*100/it.n).toFixed(2)}% - 3px)`;
+  const vert=(s,e)=>`top:${(s/60*hh).toFixed(1)}px;height:${Math.max(20,(e-s)/60*hh).toFixed(1)}px`;
   items.forEach(it=>{const t=it.t,st=status(t);
-    if(it.ghost)h+=`<div class="tl-pl" data-id="${t.id}" data-a="open" style="--tc:var(--c${t.color});${pos(it,it.ghost.s,it.ghost.e)}" title="المخطط: ${fmtT(it.ghost.s)}–${fmtT(it.ghost.e)}"><small>المخطط <span dir="ltr">${fmtT(it.ghost.s)}–${fmtT(it.ghost.e)}</span></small></div>`;
-    if(it.act){const ht=Math.max(20,(it.act.e-it.act.s)/60*hh);
-      h+=`<div class="tl-b is-${st} is-act ${it.act.live?'is-live':''}" data-id="${t.id}" data-a="open" style="--tc:var(--c${t.color});${pos(it,it.act.s,it.act.e)}"><b>${ic(t.done?'check':t.icon)}${esc(t.title)}</b>${ht>=38?`<small>${it.act.live?'من '+fmtT(it.act.s)+' لحد دلوقتي':'<span dir="ltr">'+fmtT(it.act.s)+'–'+fmtT(it.act.e)+'</span>'}</small>`:''}</div>`}
+    if(it.act){const ht=Math.max(20,(it.e-it.s)/60*hh),line=it.act.live?'من '+tShort(it.act.s)+' لحد دلوقتي':tRange(it.act.s,it.act.e);
+      h+=`<div class="tl-b is-${st} is-act ${it.act.live?'is-live':''} ${ht<34?'is-short':''}" data-id="${t.id}" data-a="open" style="--tc:var(--c${t.color});${vert(it.s,it.e)};${col(it)}" title="${it.act.live?'من '+tShort(it.act.s)+' لحد دلوقتي':tShort(it.act.s)+'–'+tShort(it.act.e)}"><b>${ic(t.done?'check':t.icon)}${esc(t.title)}</b>${ht>=38?`<small>${line}</small>`:''}</div>`}
     else{const ht=Math.max(20,(it.e-it.s)/60*hh);
-      h+=`<div class="tl-b is-${st} ${it.open?'is-open':''}" data-id="${t.id}" data-a="open" style="--tc:var(--c${t.color});${pos(it,it.s,it.e)}"><b>${ic(t.done?'check':t.icon)}${esc(t.title)}</b>${ht>=38?`<small>${fmtT(it.s)}–${it.open?'…':fmtT(it.e)}</small>`:''}${t.mode==='open'||t.done?'':'<i class="tl-rs"></i>'}${t.done?'':'<i class="tl-mv" title="اسحب لتغيير الميعاد">'+ic('drag_handle')+'</i>'}</div>`}});
+      h+=`<div class="tl-b is-${st} ${it.open?'is-open':''} ${ht<34?'is-short':''}" data-id="${t.id}" data-a="open" style="--tc:var(--c${t.color});${vert(it.s,it.e)};${col(it)}"><b>${ic(t.done?'check':t.icon)}${esc(t.title)}</b>${ht>=38?`<small>${tRange(it.s,it.open?null:it.e)}</small>`:''}${t.mode==='open'||t.done?'':'<i class="tl-rs"></i>'}${t.done?'':'<i class="tl-mv" title="اسحب لتغيير الميعاد">'+ic('drag_handle')+'</i>'}</div>`}});
   if(d===today())h+=`<div class="tl-now" id="tl-now" style="top:${(nowMin()/60*hh).toFixed(1)}px"></div>`;
   return h+'</div></div>'}
 
@@ -1883,7 +1894,7 @@ function settingsHTML(){const np=('Notification' in window)?Notification.permiss
     ${selRow('view','العرض الافتراضي',VIEWS.map(v=>[v[0],v[1]]))}${selRow('defDur','المدة الافتراضية',[15,30,45,60,90].map(m=>[m,fmtDur(m)]))}
     ${selRow('snap','دقة السحب في عرض اليوم',[5,10,15,30].map(m=>[m,fmtDur(m)]))}${selRow('weekStart','أول يوم في الأسبوع',[[6,'السبت'],[0,'الأحد'],[1,'الاثنين']])}
     ${selRow('defRem','تذكير المهام الجديدة',REMS.map(r=>[r[0]===null?'null':r[0],r[1]]))}
-    ${swRow('autoShift','اقتراح الإزاحة','لو خلصت مهمة متأخر، يقترح يزيح اللي بعدها')}${swRow('ripple','إزاحة تلقائية عند السحب','تحريك مهمة بيزق اللي بتتداخل معاها')}${swRow('swipe','السحب في القائمة','اسحب المهمة يمين علشان تتحذف، وشمال علشان تتأجل')}${swRow('confetti','احتفال لما تخلص اليوم')}${swRow('anim','حركة الواجهة','دخول القوايم والكروت بحركة خفيفة. اقفلها لو عايز الشاشة ثابتة')}${swRow('prayer','مواقيت الصلاة','شريط الصلوات فوق المهام والقبلة')}${swRow('late','تنبيه التأخير','لو عدّى 10 دقايق على ميعاد مهمة وماتبدأتش')}${swRow('review','مراجعة آخر اليوم','تذكير بالليل بالمهام اللي ماخلصتش')}${S.set.review!==false?selRow('reviewAt','ميعاد المراجعة',[[1200,'8 مساءً'],[1260,'9 مساءً'],[1320,'10 مساءً'],[1380,'11 مساءً']]):''}${swRow('qbar','شريط الإضافة السريعة','خانة فوق المهام تكتب فيها المهمة في سطر واحد')}
+    ${swRow('autoShift','اقتراح الإزاحة','لو خلصت مهمة متأخر، يقترح يزيح اللي بعدها')}${swRow('ripple','إزاحة تلقائية عند السحب','تحريك مهمة بيزق اللي بتتداخل معاها')}${swRow('swipe','السحب في القائمة','اسحب المهمة يمين علشان تتحذف، وشمال علشان تتأجل')}${swRow('confetti','احتفال لما تخلص اليوم')}${swRow('anim','حركة الواجهة','دخول القوايم والكروت بحركة خفيفة. اقفلها لو عايز الشاشة ثابتة')}${swRow('prayer','مواقيت الصلاة','شريط الصلوات فوق المهام والقبلة')}${swRow('late','تنبيه التأخير','لو عدّى 10 دقايق على ميعاد مهمة وماتبدأتش')}${swRow('review','مراجعة آخر اليوم','تذكير بالليل بالمهام اللي ماخلصتش')}${S.set.review!==false?selRow('reviewAt','ميعاد المراجعة',[[1200,'8 مساءً'],[1260,'9 مساءً'],[1320,'10 مساءً'],[1380,'11 مساءً']]):''}
     ${selRow('cur','عملة التكاليف',[['ج.م','جنيه مصري'],['ر.س','ريال سعودي'],['د.إ','درهم إماراتي'],['د.ك','دينار كويتي'],['$','دولار'],['€','يورو']],'بتظهر جنب المبالغ في المهام والتقارير')}</div>
   <div class="set-g"><h3>التنبيهات</h3>${swRow('sound','أصوات التنبيه')}${swRow('haptic','اهتزاز','على الأجهزة اللي بتدعمه')}
     ${NV?'':`<div class="set-r"><div><b>إشعارات النظام</b><small>${np==='granted'?'مفعّلة':np==='denied'?'المتصفح رافضها':np==='none'?'مش مدعومة هنا':'التذكيرات بتظهر في الجزيرة طول ما الصفحة مفتوحة'}</small></div>${np==='default'?`<button class="btn sm" data-a="askNotif">فعّل</button>`:''}</div>`}</div>
@@ -2323,7 +2334,7 @@ function natApply(d){const at=+(d&&d.at)||Date.now();
 
 /* quick add: text shared from another app (or the widget's + button) opens a new task, already filled in, ready to confirm */
 function quickFrom(text){text=String(text||'').replace(/\r/g,'').trim();closeAll();Isl.open=false;if(document.body.classList.contains('zen'))Clock.zen(false);UI.tab='tasks';goDate(today());
-  if(!text){const q=$('#qa-in');if(q){q.focus();return}return A.newTask()}
+  if(!text)return A.newTask();
   const lines=text.split('\n').map(x=>x.trim()).filter(Boolean),first=lines[0]||'',p=quickPreset(first);if(p.mode==='any')delete p.mode;
   if(lines.length>1||first.length>120||/https?:\/\//.test(text))p.notes=text.slice(0,2000);
   openEditor(null,p);Isl.say('راجع المهمة ودوس «أضف المهمة»','add_task')}
