@@ -381,8 +381,17 @@ footer{padding-block:28px 40px}
 /* v3.11 */
 .per .pos{display:block;margin-top:-2px;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.04em;color:var(--muted);line-height:1.45}
 :root[data-lang="ar"] .per .pos{font-family:var(--font-body);letter-spacing:0;font-size:var(--step--1)}
-#knx .fixes{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (max-width:760px){#knx .fixes{grid-template-columns:1fr}}
+.kfp{margin-bottom:clamp(32px,5vw,48px)}
+.kfp .case h3{font-size:var(--step-2)}
+.kfp .meta-l{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;font-size:var(--step--1);margin:0}
+.kfp .meta-l dt{color:var(--copper);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+:root[data-lang="ar"] .kfp .meta-l dt{font-family:var(--font-body);letter-spacing:0;text-transform:none;font-size:var(--step--1)}
+.kfp .meta-l dd{margin:0;color:var(--fg)}
+.kfp h4{margin:6px 0 0;font-size:var(--step-0);font-weight:600}
+.kfp ul{margin:0;padding-inline-start:18px;display:grid;gap:6px;color:var(--muted);font-size:var(--step--1)}
+.kfp li::marker{color:var(--copper)}
+.kfp .live{color:var(--fg)}
+.pill.wip{background:color-mix(in srgb,var(--wip) 18%,transparent);color:var(--wip)}
 .creds{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 </style>
 
@@ -601,8 +610,8 @@ footer{padding-block:28px 40px}
           <p class="when"><span data-l="en">From 1 November 2026 · after probation ended on 21 October</span><span data-l="ar">من 1 نوفمبر 2026 · بعد انتهاء فترة الاختبار في 21 أكتوبر</span></p>
           <div class="per-n">
             <div><b>6</b><span data-l="en">projects so far</span><span data-l="ar">مشاريع حتى الآن</span></div>
-            <div><b>2</b><span data-l="en">sites finished</span><span data-l="ar">موقعان انتهيا</span></div>
-            <div><b>4</b><span data-l="en">sites in progress</span><span data-l="ar">مواقع جارية</span></div>
+            <div><b>1</b><span data-l="en">site handed over</span><span data-l="ar">موقع تم تسليمه</span></div>
+            <div><b>5</b><span data-l="en">sites in progress</span><span data-l="ar">مواقع جارية</span></div>
           </div>
         </article>
       </div>
@@ -621,21 +630,6 @@ footer{padding-block:28px 40px}
             <div><div class="v">11</div><div class="k"><span data-l="en">Cameras on a 16-ch NVR</span><span data-l="ar">كاميرا على NVR بـ16 قناة</span></div></div>
             <div><div class="v">7</div><div class="k"><span data-l="en">Wi‑Fi 6 access points</span><span data-l="ar">نقاط وصول Wi‑Fi 6</span></div></div>
             <div><div class="v">8</div><div class="k"><span data-l="en">Zigbee 3-gang modules</span><span data-l="ar">ميني Zigbee 3 جانج</span></div></div>
-          </div>
-        </article>
-
-        <article class="case">
-          <div class="case-body">
-            <div class="case-meta"><span class="pill">P-29</span><span class="pill">KNX</span><span class="pill">ETS6</span><span class="pill">KNX Secure</span></div>
-            <h3><span data-l="en">Villa KNX system, Sodic East Town</span><span data-l="ar">نظام KNX لفيلا، سوديك إيست تاون</span></h3>
-            <p data-l="en">A full villa KNX installation programmed on site. I structured the ETS6 project into three floors, 18 rooms and two distribution boards, planned physical addresses floor by floor, and generated 155 group addresses with my XML script, each with an Arabic description. Three 24-channel actuators were programmed and linked, a Zennio ALLinBOX served as the IP interface, and every actuator got its own wiring guide.</p>
-            <p data-l="ar">نظام KNX لفيلا كاملة تمت برمجته في الموقع. قسّمت مشروع ETS6 إلى ثلاثة أدوار و18 مكانًا ولوحتي توزيع، ووضعت خطة العناوين الفيزيائية لكل دور، وولّدت 155 جروب أدريس بسكربت XML الخاص بي بوصف عربي لكل عنوان. برمجت ثلاثة أكتيوترات بـ24 قناة وربطتها، واستخدمت Zennio ALLinBOX كإنترفيس IP، وعملت دليل توصيل لكل أكتيوتر.</p>
-          </div>
-          <div class="plate">
-            <div><div class="v">155</div><div class="k"><span data-l="en">Group addresses by XML</span><span data-l="ar">جروب أدريس بملف XML</span></div></div>
-            <div><div class="v">72</div><div class="k"><span data-l="en">Actuator channels</span><span data-l="ar">قناة أكتيوتر</span></div></div>
-            <div><div class="v">18</div><div class="k"><span data-l="en">Rooms over 3 floors</span><span data-l="ar">مكانًا على 3 أدوار</span></div></div>
-            <div><div class="v">1</div><div class="k"><span data-l="en">IP interface for KNX Secure</span><span data-l="ar">إنترفيس IP لأجهزة KNX Secure</span></div></div>
           </div>
         </article>
 
@@ -823,10 +817,10 @@ footer{padding-block:28px 40px}
             <p data-l="ar">ثلاثة أيام: الإشراف على تركيب لوجو الشركة أعلى الباب الرئيسي وتوفير باور سبلاي 12 فولت لإضاءته، وحل مشكلة NVR الكاميرات، وتفعيل الوصول الآمن لسيرفر المقر من الخارج دون فتح أي منفذ على الراوتر.</p></div>
           <div class="rr grp" role="row"><span role="cell"><span data-l="en">Technical Site Engineer · from 1 November 2026 (with the last week of October)</span><span data-l="ar">مهندس موقع فني · من 1 نوفمبر 2026 (مع الأسبوع الأخير من أكتوبر)</span></span></div>
           <div class="rr" role="row"><span class="ref">P-29</span>
-            <span class="site"><b>Sodic East Town</b><small><span data-l="en">New Cairo · Oct 2026</span><span data-l="ar">القاهرة الجديدة · أكتوبر 2026</span></small></span>
-            <span class="rsys"><span data-l="en">Villa · KNX, ETS6, KNX Secure</span><span data-l="ar">فيلا · KNX، ETS6، KNX Secure</span></span>
-            <p data-l="en">ETS6 project for 3 floors and 18 rooms, 155 group addresses by XML, three 24-channel actuators programmed on site with a Zennio ALLinBOX as the IP interface. Featured above.</p>
-            <p data-l="ar">مشروع ETS6 لثلاثة أدوار و18 مكانًا، و155 جروب أدريس بملف XML، وبرمجة ثلاثة أكتيوترات بـ24 قناة بالموقع مع Zennio ALLinBOX كإنترفيس IP. التفاصيل في الأعلى.</p></div>
+            <span class="site"><b><span data-l="en">Private villa</span><span data-l="ar">فيلا خاصة</span></b><small><span data-l="en">New Cairo · Oct–Nov 2026 · in progress</span><span data-l="ar">القاهرة الجديدة · أكتوبر – نوفمبر 2026 · جارٍ</span></small></span>
+            <span class="rsys"><span data-l="en">Villa · KNX wired, ETS6, KNX Secure</span><span data-l="ar">فيلا · KNX سلكي، ETS6، KNX Secure</span></span>
+            <p data-l="en">My first full KNX project on site: 155 group addresses by XML, 64 lighting circuits mapped, multifunction 24-fold actuators and an ALLinBOX commissioned, a 6-button entrance keypad and six shutters; ground- and first-floor lighting live, roof and garden pending. Details in the KNX section.</p>
+            <p data-l="ar">أول مشروع KNX كامل أنفذه بالموقع: 155 جروب أدريس بملف XML، وتوزيع 64 دائرة إنارة، وتشغيل أكتيوترات متعددة الوظائف بـ24 قناة مع ALLinBOX، وكيباد مدخل بـ6 أزرار، وستة شترات، وإنارة الأرضي والأول تعمل، والروف والحديقة متبقيان. التفاصيل في قسم KNX.</p></div>
           <div class="rr" role="row"><span class="ref">P-30</span>
             <span class="site"><b><span data-l="en">Palm Hills</span><span data-l="ar">بالم هيلز</span></b><small><span data-l="en">Villa · Oct–Nov 2026</span><span data-l="ar">فيلا · أكتوبر – نوفمبر 2026</span></small></span>
             <span class="rsys"><span data-l="en">Villa · intercom, CCTV, Wi‑Fi 6, audio, Zigbee, smart locks</span><span data-l="ar">فيلا · إنتركم، كاميرات، Wi‑Fi 6، صوت، Zigbee، كوالين ذكية</span></span>
@@ -961,10 +955,49 @@ footer{padding-block:28px 40px}
           <h2><span data-l="en">KNX on ETS6</span><span data-l="ar">KNX على ETS6</span></h2>
         </div>
         <p class="intro">
-          <span data-l="en">Certified in September 2026, then straight into real work: ETS6 projects in the technical office, my first KNX device on site, and a full villa KNX system programmed on site in October.</span>
-          <span data-l="ar">اجتزت الشهادة في سبتمبر 2026، ثم انتقلت مباشرة لشغل فعلي: مشاريع ETS6 بالمكتب الفني، وأول جهاز KNX أبرمجه بالموقع، ونظام KNX لفيلا كاملة برمجته بالموقع في أكتوبر.</span>
+          <span data-l="en">Certified in September 2026, then straight into real work: ETS6 projects in the technical office, my first KNX device on site, and since October my first full KNX project on site as a site engineer.</span>
+          <span data-l="ar">اجتزت الشهادة في سبتمبر 2026، ثم انتقلت مباشرة لشغل فعلي: مشاريع ETS6 بالمكتب الفني، وأول جهاز KNX أبرمجه بالموقع، ومنذ أكتوبر أول مشروع KNX كامل أنفذه بالموقع كمهندس موقع.</span>
         </p>
       </div>
+      <h3 class="subh mono"><span data-l="en">KNX field projects</span><span data-l="ar">مشاريع KNX الميدانية</span></h3>
+      <div class="kfp">
+        <article class="case">
+          <div class="case-body">
+            <div class="case-meta"><span class="pill">P-29</span><span class="pill"><bdi>VIL-ESM-001</bdi></span><span class="pill">KNX</span><span class="pill wip"><span data-l="en">In progress</span><span data-l="ar">جارٍ التنفيذ</span></span></div>
+            <h3><span data-l="en">Private Villa — KNX Wired Smart Home (New Cairo)</span><span data-l="ar">فيلا خاصة — منزل ذكي KNX سلكي (القاهرة الجديدة)</span></h3>
+            <dl class="meta-l">
+              <dt><span data-l="en">Role</span><span data-l="ar">الدور</span></dt><dd><span data-l="en">Technical Site Engineer — on-site commissioning &amp; ETS programming</span><span data-l="ar">مهندس موقع فني — التشغيل بالموقع وبرمجة ETS</span></dd>
+              <dt><span data-l="en">Tools</span><span data-l="ar">الأدوات</span></dt><dd><bdi>ETS6 Professional · KNX Secure devices · Zennio ALLinBOX 1612 · GVS K-BUS actuators</bdi></dd>
+              <dt><span data-l="en">Status</span><span data-l="ar">الحالة</span></dt><dd class="live"><span data-l="en">In progress: ground- and first-floor lighting live, roof and garden pending</span><span data-l="ar">جارٍ: إنارة الدور الأرضي والأول تعمل، والروف والحديقة متبقيان</span></dd>
+            </dl>
+            <p data-l="en">I took over site follow-up of a two-floor villa KNX installation and brought the lighting system from unprogrammed panels to a working, keypad-controlled system ahead of the client’s visit.</p>
+            <p data-l="ar">استلمت متابعة تركيب نظام KNX لفيلا من دورين، ونقلت نظام الإنارة من لوحات غير مبرمجة إلى نظام يعمل ويُتحكم فيه بالكيباد قبل زيارة العميل.</p>
+            <h4><span data-l="en">Highlights</span><span data-l="ar">أبرز ما نفذته</span></h4>
+            <ul>
+              <li><span data-l="en">Designed the ETS building structure, physical-address plan and a 3-level group address scheme (155 group addresses, every command paired with its status), imported via XML</span><span data-l="ar">صممت هيكل المبنى على ETS وخطة العناوين الفيزيائية ونظام جروب أدريس من 3 مستويات (155 عنوانًا، كل أمر معه عنوان الحالة)، واستوردتها بملف XML</span></li>
+              <li><span data-l="en">Mapped 64 lighting circuits across the ground- and first-floor panels to actuator channels</span><span data-l="ar">وزّعت 64 دائرة إنارة في لوحتي الدور الأرضي والأول على قنوات الأكتيوترات</span></li>
+              <li><span data-l="en">Commissioned multifunction 24-fold actuators on both floors plus the Zennio ALLinBOX</span><span data-l="ar">شغّلت أكتيوترات متعددة الوظائف بـ24 قناة في الدورين، ومعها Zennio ALLinBOX</span></li>
+              <li><span data-l="en">Programmed a 6-button entrance keypad: all on/off, ground floor on/off and first floor on/off, using the actuators’ central functions</span><span data-l="ar">برمجت كيباد المدخل بـ6 أزرار: تشغيل وإطفاء الكل، والدور الأرضي، والدور الأول، عن طريق الوظائف المركزية في الأكتيوترات</span></li>
+              <li><span data-l="en">Configured the six ground-floor shutters on a dedicated actuator</span><span data-l="ar">ضبطت شترات الدور الأرضي الستة على أكتيوتر مخصص لها</span></li>
+            </ul>
+            <h4><span data-l="en">Challenges solved on site</span><span data-l="ar">مشكلات حللتها بالموقع</span></h4>
+            <ul>
+              <li><span data-l="en">The USB interface could not program the newer Secure-generation devices (message length limit), so I switched to IP tunnelling through the ALLinBOX</span><span data-l="ar">إنترفيس الـ USB لم يستطع برمجة أجهزة الجيل الأحدث Secure بسبب حد طول الرسالة، فانتقلت إلى IP Tunnelling عبر الـ ALLinBOX</span></li>
+              <li><span data-l="en">The laptop VPN was hijacking the direct IP link; I identified it and isolated it</span><span data-l="ar">الـ VPN على اللابتوب كان يستحوذ على الاتصال المباشر بالـ IP، فحددته وعزلته</span></li>
+              <li><span data-l="en">An unpowered ALLinBOX and a missing actuator relay supply: I traced the feeds in the distribution board with a multimeter and restored power</span><span data-l="ar">الـ ALLinBOX بلا تغذية وتغذية ريليهات الأكتيوتر مفقودة: تتبعت المغذيات في لوحة التوزيع بالملتيميتر وأعدت التغذية</span></li>
+              <li><span data-l="en">Bridged the first-floor actuators onto the bus over Cat6</span><span data-l="ar">وصّلت أكتيوترات الدور الأول على الباص عبر كابل Cat6</span></li>
+            </ul>
+          </div>
+          <div class="plate">
+            <div><div class="v">155</div><div class="k"><span data-l="en">Group addresses, imported by XML</span><span data-l="ar">جروب أدريس مستوردة بملف XML</span></div></div>
+            <div><div class="v">64</div><div class="k"><span data-l="en">Lighting circuits mapped</span><span data-l="ar">دائرة إنارة موزعة</span></div></div>
+            <div><div class="v">6</div><div class="k"><span data-l="en">Entrance keypad buttons</span><span data-l="ar">أزرار كيباد المدخل</span></div></div>
+            <div><div class="v">6</div><div class="k"><span data-l="en">Ground-floor shutters</span><span data-l="ar">شترات الدور الأرضي</span></div></div>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="subh mono"><span data-l="en">Certification and technical office</span><span data-l="ar">الشهادة والمكتب الفني</span></h3>
       <div class="fixes">
         <article class="fix">
           <span class="status ok"><span data-l="en">Certified · Sep 2026</span><span data-l="ar">معتمد · سبتمبر 2026</span></span>
@@ -972,13 +1005,6 @@ footer{padding-block:28px 40px}
           <p data-l="en">Passed the KNX Advanced Partner exam and delivered a full apartment on ETS6 with five KNX Secure devices from Schneider Electric: DALI‑2 lighting with Tunable White, shutters, AC through an IR gateway, six scenes and logic on the panel. Shipped with an interactive project tracking page and a full technical report.</p>
           <p data-l="ar">اجتياز امتحان KNX Advanced Partner وتسليم مشروع شقة كاملة على ETS6 بخمسة أجهزة KNX Secure من Schneider Electric: إنارة DALI‑2 مع Tunable White، وستائر، وتكييف عبر IR Gateway، وستة مشاهد، ومنطق على الشاشة. مع موقع متابعة تفاعلي للمشروع وتقرير فني كامل.</p>
           <p class="res"><b><span data-l="en">Credential</span><span data-l="ar">الاعتماد</span></b><span data-l="en">Registered as a KNX Advanced partner on knx.org.</span><span data-l="ar">مسجّل كشريك KNX Advanced على knx.org.</span></p>
-        </article>
-        <article class="fix">
-          <span class="pill"><bdi>P-29</bdi> · <span data-l="en">On site · Sodic East Town</span><span data-l="ar">بالموقع · سوديك إيست تاون</span></span>
-          <h3><span data-l="en">A full villa KNX system on site</span><span data-l="ar">نظام KNX لفيلا كاملة بالموقع</span></h3>
-          <p data-l="en">ETS6 project for three floors, 18 rooms and two boards; 155 group addresses generated by XML with Arabic descriptions; three AMMA 24-channel actuators (72 channels) programmed and linked; a wiring guide for each actuator. The USB interface on site allowed only 15-byte messages while the KNX Secure devices needed 23, so I programmed through the IP interface of the Zennio ALLinBOX, after fetching its v2 product file from Zennio because the catalogue only listed v3.</p>
-          <p data-l="ar">مشروع ETS6 لثلاثة أدوار و18 مكانًا ولوحتي توزيع، و155 جروب أدريس مولّدة بملف XML بوصف عربي، وبرمجة وربط ثلاثة أكتيوترات AMMA بـ24 قناة (72 قناة)، ودليل توصيل لكل أكتيوتر. وكان إنترفيس الـ USB بالموقع يسمح برسائل حتى 15 بايت بينما أجهزة KNX Secure تحتاج 23، فبرمجت عبر إنترفيس IP في Zennio ALLinBOX، بعد تنزيل ملف النسخة v2 من موقع Zennio لأن الكتالوج يعرض v3 فقط.</p>
-          <p class="res"><b><span data-l="en">Result</span><span data-l="ar">النتيجة</span></b><span data-l="en">Programmed and documented on site; site visit report delivered.</span><span data-l="ar">برمجة وتوثيق كامل بالموقع، وتسليم تقرير الزيارة.</span></p>
         </article>
         <article class="fix">
           <span class="pill"><bdi>P-23</bdi> · <span data-l="en">Technical office</span><span data-l="ar">مكتب فني</span></span>

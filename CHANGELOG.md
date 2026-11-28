@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.11 update — 2026-11-28
+- New "KNX field projects" block at the top of the KNX section, with a full card for P-29: Private Villa — KNX Wired Smart Home (New Cairo), code VIL-ESM-001, in progress (ground- and first-floor lighting live, roof and garden pending): role, tools, summary, highlights, on-site challenges and a plate (155 group addresses, 64 lighting circuits, 6 keypad buttons, 6 shutters).
+- The older short P-29 cards in Latest sites and in the KNX grid were removed so the project appears once in full; its register row now matches the card.
+- "Now" card: 1 site handed over, 5 in progress.
+
 ## v3.11 — 2026-11-21
 - Version named for November 2026.
 - Each period card now shows the position held in small type under its title: Smart Home & Automation Engineer · Internship (training), Technical Office Engineer (probation), Technical Site Engineer (current role). The "Now" card keeps its title, with the position under it and its own figures: 6 projects, 2 finished, 4 in progress.
